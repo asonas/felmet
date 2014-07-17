@@ -1,0 +1,18 @@
+= form_for @felica do |f|
+  - if @felica.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@felica.errors.count, "error")} prohibited this felica from being saved:"
+      ul
+        - @felica.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :idm
+    = f.text_field :idm
+  .field
+    = f.label :activation
+    = f.check_box :activation
+  .field
+    = f.label :activated_at
+    = f.datetime_select :activated_at
+  .actions = f.submit 'Save'

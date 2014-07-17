@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Idm:
+  = @felica.idm
+p
+  strong Activation:
+  = @felica.activation
+p
+  strong Activated at:
+  = @felica.activated_at
+
+= link_to 'Edit', edit_felica_path(@felica)
+'|
+= link_to 'Back', felicas_path

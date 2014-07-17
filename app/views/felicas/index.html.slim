@@ -1,0 +1,25 @@
+h1 Listing felicas
+
+table
+  thead
+    tr
+      th Idm
+      th Activation
+      th Activated at
+      th
+      th
+      th
+
+  tbody
+    - @felicas.each do |felica|
+      tr
+        td = felica.idm
+        td = felica.activation
+        td = felica.activated_at
+        td = link_to 'Show', felica
+        td = link_to 'Edit', edit_felica_path(felica)
+        td = link_to 'Destroy', felica, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Felica', new_felica_path
