@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @felica = Felica.find(params[:felica_id])
   end
 
   # GET /users/1/edit
