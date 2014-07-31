@@ -1,11 +1,14 @@
 h1 Listing felicas
 
-table
+= link_to "ユーザ未登録のカード一覧", felicas_path
+= link_to "登録済みのカード一覧", felicas_path(activation: true)
+
+table.table
   thead
     tr
-      th Idm
-      th Activation
-      th Activated at
+      th カードID
+      th アクティベーションした日
+      th 操作
       th
       th
       th
@@ -14,8 +17,8 @@ table
     - @felicas.each do |felica|
       tr
         td = felica.idm
-        td = felica.activation
         td = felica.activated_at
+        td = link_to "ユーザと紐付ける", new_felica_user_path(felica)
         td = link_to 'Show', felica
         td = link_to 'Edit', edit_felica_path(felica)
         td = link_to 'Destroy', felica, data: {:confirm => 'Are you sure?'}, :method => :delete

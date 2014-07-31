@@ -4,7 +4,7 @@ class FelicasController < ApplicationController
   # GET /felicas
   # GET /felicas.json
   def index
-    @felicas = Felica.all
+    @felicas = Felica.where(search_params).page(params[:page])
   end
 
   # GET /felicas/1
@@ -71,4 +71,8 @@ class FelicasController < ApplicationController
     def felica_params
       params.require(:felica).permit(:idm, :activation, :activated_at)
     end
+
+  def search_params
+    params.permit(:activation).select { |k, v| v.present? }
+  end
 end
