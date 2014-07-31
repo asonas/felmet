@@ -24,7 +24,9 @@ RSpec.describe FelicasController, :type => :controller do
   # Felica. As you add validations to Felica, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      idm: Faker::Lorem.characters(10)
+    }
   }
 
   let(:invalid_attributes) {
