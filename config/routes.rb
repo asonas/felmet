@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  namespace :api do
+    resource :felica, only: [] do
+      get :create
+    end
+  end
+
   resources :users
 
   resources :felicas
