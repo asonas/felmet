@@ -27,6 +27,7 @@ end
 group :test do
   gem 'database_rewinder'
   gem 'fabrication'
+  gem 'faker'
   gem 'guard-rspec'
   gem 'konacha'
   gem 'letter_opener_web', '~> 1.2.0'
