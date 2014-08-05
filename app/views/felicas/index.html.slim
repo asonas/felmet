@@ -6,6 +6,7 @@ h1 Listing felicas
 table.table
   thead
     tr
+      th id
       th カードID
       th アクティベーションした日
       th 操作
@@ -15,6 +16,7 @@ table.table
   tbody
     - @felicas.each do |felica|
       tr
+        td = felica.id
         td = felica.idm
         td = felica.activated_at
         td = link_to "ユーザと紐付ける", new_felica_user_path(felica)
