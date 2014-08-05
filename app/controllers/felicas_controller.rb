@@ -12,15 +12,6 @@ class FelicasController < ApplicationController
   def show
   end
 
-  # GET /felicas/new
-  def new
-    @felica = Felica.new
-  end
-
-  # GET /felicas/1/edit
-  def edit
-  end
-
   # POST /felicas
   # POST /felicas.json
   def create

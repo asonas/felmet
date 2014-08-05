@@ -11,7 +11,6 @@ table.table
       th 操作
       th
       th
-      th
 
   tbody
     - @felicas.each do |felica|
@@ -20,9 +19,5 @@ table.table
         td = felica.activated_at
         td = link_to "ユーザと紐付ける", new_felica_user_path(felica)
         td = link_to 'Show', felica
-        td = link_to 'Edit', edit_felica_path(felica)
         td = link_to 'Destroy', felica, data: {:confirm => 'Are you sure?'}, :method => :delete
 
-br
-
-= link_to 'New Felica', new_felica_path

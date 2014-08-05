@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :felicas do
+  resources :felicas, only: %i(index create show) do
     resource :user, only: %i(new create)
   end
 
