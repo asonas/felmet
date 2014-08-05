@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :events, only: %i(index edit update)
 
   namespace :api do
-    namespace :arduino do
+    scope :arduino do
       resource :felica, only: [] do
         get :create
       end
