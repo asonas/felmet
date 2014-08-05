@@ -7,8 +7,6 @@ table
       th Checkin at
       th Checkout at
       th
-      th
-      th
 
   tbody
     - @events.each do |event|
@@ -16,10 +14,4 @@ table
         td = event.user
         td = event.checkin_at
         td = event.checkout_at
-        td = link_to 'Show', event
         td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Event', new_event_path

@@ -24,7 +24,9 @@ RSpec.describe UsersController, :type => :controller do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      felica_id: 1
+    }
   }
 
   let(:invalid_attributes) {
@@ -54,7 +56,8 @@ RSpec.describe UsersController, :type => :controller do
 
   describe "GET new" do
     it "assigns a new user as @user" do
-      get :new, {}, valid_session
+      Fabricate(:felica)
+      get :new, { felica_id: 1 }, valid_session
       expect(assigns(:user)).to be_a_new(User)
     end
   end
