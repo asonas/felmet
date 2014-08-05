@@ -1,6 +1,6 @@
 h1 Listing users
 
-table
+table.table.table-striped
   thead
     tr
       th Felica
@@ -12,7 +12,7 @@ table
   tbody
     - @users.each do |user|
       tr
-        td = user.felica
+        td = user.felica.idm
         td = user.name
         td = link_to 'Show', user
         td = link_to 'Edit', edit_user_path(user)
