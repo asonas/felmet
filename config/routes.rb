@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :felicas, only: %i(index create show destroy) do
-    resource :user, only: %i(new create)
+    resource :user, only: %i(new create edit update)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

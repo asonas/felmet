@@ -19,7 +19,11 @@ table.table
         td = felica.id
         td = felica.idm
         td = felica.activated_at
-        td = link_to "ユーザと紐付ける", new_felica_user_path(felica)
+        td
+          - if felica.activate?
+            = link_to "ユーザの情報を更新する", edit_felica_user_path(felica)
+          - else
+            = link_to "ユーザと紐付ける", new_felica_user_path(felica)
         td = link_to 'Show', felica
         td = link_to 'Destroy', felica, data: {:confirm => 'Are you sure?'}, :method => :delete
 
