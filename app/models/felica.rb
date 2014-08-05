@@ -3,6 +3,8 @@ class Felica < ActiveRecord::Base
 
   scope :active, -> { where(activation: true) }
 
+  has_one :user
+
   def activate!
     return unless activate?
     self.activation = true
