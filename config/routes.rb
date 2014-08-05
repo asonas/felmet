@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'felicas#index'
+
+  resources :events
 
   namespace :api do
     resource :felica, only: [] do
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :felicas, only: %i(index create show) do
+  resources :felicas, only: %i(index create show destroy) do
     resource :user, only: %i(new create)
   end
 
