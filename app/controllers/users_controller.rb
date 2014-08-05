@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @felica = Felica.find(params[:felica_id])
+    if @felica.activate?
+      redirect_to felicas_path, notice: "既に認証済みです" and return
+    end
   end
 
   # GET /users/1/edit
