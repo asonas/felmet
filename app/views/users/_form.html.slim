@@ -1,4 +1,5 @@
 = form_for @user do |f|
+  = f.hidden_field :felica_id, value: @felica.id
   - if @user.errors.any?
     #error_explanation
       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -6,10 +7,7 @@
         - @user.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :felica
-    = @felica.idm
-  .field
+  .field.form-group
     = f.label :name
-    = f.text_field :name
-  .actions = f.submit 'Save'
+    = f.text_field :name, class: "form-control"
+  .actions = f.submit 'Save', class: "btn btn-default"
