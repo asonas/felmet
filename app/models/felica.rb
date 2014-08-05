@@ -6,7 +6,7 @@ class Felica < ActiveRecord::Base
   has_one :user
 
   def activate!
-    return unless activate?
+    return if activate?
     self.activation = true
     self.touch(:activated_at)
     save!
