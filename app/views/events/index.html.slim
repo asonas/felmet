@@ -11,7 +11,7 @@ table
   tbody
     - @events.each do |event|
       tr
-        td = event.user
+        td = event.user.name
         td = event.checkin_at
         td = event.checkout_at
         td = link_to 'Edit', edit_event_path(event)
