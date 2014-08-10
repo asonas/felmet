@@ -1,10 +1,9 @@
-h1 Listing groups
+h1 グループ一覧
 
-table
+table.table.table-striped
   thead
     tr
-      th Name
-      th
+      th 名前
       th
       th
 
@@ -12,10 +11,9 @@ table
     - @groups.each do |group|
       tr
         td = group.name
-        td = link_to 'Show', group
-        td = link_to 'Edit', edit_group_path(group)
-        td = link_to 'Destroy', group, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to '編集する', edit_group_path(group)
+        td = link_to '削除する', group, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
 
 br
 
-= link_to 'New Group', new_group_path
+= link_to '新規グループ登録', new_group_path

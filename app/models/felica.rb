@@ -2,6 +2,7 @@ class Felica < ActiveRecord::Base
   validates :idm, presence: true, uniqueness: true
 
   scope :active, -> { where(activation: true) }
+  scope :not_active, -> { where(activation: false) }
 
   has_one :user
   has_many :events

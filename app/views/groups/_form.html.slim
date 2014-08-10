@@ -6,7 +6,7 @@
         - @group.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .field.form-group
     = f.label :name
-    = f.text_field :name
-  .actions = f.submit 'Save'
+    = f.text_field :name, class: "form-control"
+  .actions = f.submit '登録する', class: "btn btn-default"

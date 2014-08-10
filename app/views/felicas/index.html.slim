@@ -1,9 +1,19 @@
-h1 Listing felicas
+h1 Felicaカード一覧
 
-= link_to "ユーザ未登録のカード一覧", felicas_path
-= link_to "登録済みのカード一覧", felicas_path(activation: true)
+ul.nav.nav-pills
+  li(class=("active" unless @active == "true") )
+    = link_to felicas_path do
+      span.badge.pull-right
+        = Felica.not_active.count
+      |ユーザ未登録のカード一覧
+  li(class=("active" if @active == "true") )
+    = link_to felicas_path(activation: true) do
+      span.badge.pull-right
+        = Felica.active.count
+      | 登録済みのカード一覧
 
-table.table
+
+table.table.table-striped
   thead
     tr
       th id
@@ -24,6 +34,5 @@ table.table
             = link_to "ユーザの情報を更新する", edit_felica_user_path(felica)
           - else
             = link_to "ユーザと紐付ける", new_felica_user_path(felica)
-        td = link_to 'Show', felica
-        td = link_to 'Destroy', felica, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to '削除する', felica, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
 

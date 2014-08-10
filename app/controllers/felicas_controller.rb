@@ -4,7 +4,12 @@ class FelicasController < ApplicationController
   # GET /felicas
   # GET /felicas.json
   def index
-    @felicas = Felica.where(search_params).page(params[:page])
+    @active = params[:activation]
+    @felicas = if @active
+      Felica.active.page(params[:page])
+    else
+      Felica.not_active.page(params[:page])
+    end
   end
 
   # GET /felicas/1

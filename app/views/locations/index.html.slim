@@ -1,10 +1,9 @@
-h1 Listing locations
+h1 Felicaリーダ設置場所一覧
 
-table
+table.table.table-striped
   thead
     tr
       th Name
-      th
       th
       th
 
@@ -12,10 +11,9 @@ table
     - @locations.each do |location|
       tr
         td = location.name
-        td = link_to 'Show', location
-        td = link_to 'Edit', edit_location_path(location)
-        td = link_to 'Destroy', location, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to '編集する', edit_location_path(location)
+        td = link_to '削除する', location, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
 
 br
 
-= link_to 'New Location', new_location_path
+= link_to '新規設置場所登録', new_location_path

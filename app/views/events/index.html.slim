@@ -1,12 +1,11 @@
-h1 Listing events
+h1 入退室一覧
 
-table
+table.table.table-striped
   thead
     tr
-      th User
-      th Checkin at
-      th Checkout at
-      th
+      th チェックインした人の名前
+      th チェックインした日時
+      th チェックアウトした日時
 
   tbody
     - @events.each do |event|
@@ -14,4 +13,3 @@ table
         td = event.user.name
         td = event.checkin_at
         td = event.checkout_at
-        td = link_to 'Edit', edit_event_path(event)
