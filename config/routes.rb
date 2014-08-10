@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :locations
+
   root 'felicas#index'
 
   resources :events, only: %i(index edit update)
@@ -6,6 +8,10 @@ Rails.application.routes.draw do
   namespace :api do
     scope :arduino do
       resource :felica, only: [] do
+        get :create
+      end
+
+      resource :event, only: [] do
         get :create
       end
     end

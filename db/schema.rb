@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731095457) do
+ActiveRecord::Schema.define(version: 20140810162742) do
 
   create_table "events", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",     null: false
+    t.integer  "felica_id",   null: false
     t.datetime "checkin_at"
     t.datetime "checkout_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "events", ["felica_id"], name: "index_events_on_felica_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "felicas", force: true do |t|

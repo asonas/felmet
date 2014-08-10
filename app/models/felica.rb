@@ -4,6 +4,7 @@ class Felica < ActiveRecord::Base
   scope :active, -> { where(activation: true) }
 
   has_one :user
+  has_many :events
 
   def activate!
     return if activate?
@@ -14,5 +15,13 @@ class Felica < ActiveRecord::Base
 
   def activate?
     self.activation
+  end
+
+  def fetch_active_event
+    event = self.events.last
+    return nil if event.nil?
+    return nil if event.close?
+
+    event
   end
 end
