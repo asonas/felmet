@@ -6,6 +6,15 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+    nav.navbar.navbar-default.navbar-static-top(role="navigation")
+      .container
+        .navbar-header
+          .navbar-brand
+            | 入退室管理
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li = link_to "ユーザ一覧", users_path
+            li = link_to "felicaカード一覧", felicas_path
     .container
       .error
         = notice
