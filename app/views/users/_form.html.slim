@@ -10,4 +10,7 @@
   .field.form-group
     = f.label :name
     = f.text_field :name, class: "form-control"
+  .field.form-group
+     = f.fields_for :group do |group|
+      = group.select :id, Group.all.map { |g| [g.name, g.id] }, {}, { class: "form-control" }
   .actions = f.submit 'Save', class: "btn btn-default"

@@ -4,8 +4,12 @@ p
   strong Felica:
   = @user.felica.idm
 p
-  strong Name:
+  strong 名前:
   = @user.name
+p
+  strong グループ名:
+  = @user.group.name
+
 
 = link_to 'Edit', edit_user_path(@user)
 '|

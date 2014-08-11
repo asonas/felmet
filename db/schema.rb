@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 20140810185319) do
 
   create_table "users", force: true do |t|
     t.integer  "felica_id"
+    t.integer  "group_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["group_id"], name: "index_users_on_group_id"
 
 end

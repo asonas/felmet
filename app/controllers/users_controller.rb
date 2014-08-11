@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.build_group
+
     @felica = Felica.find(params[:felica_id])
     if @felica.activate?
       redirect_to felicas_path, notice: "既に認証済みです" and return
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.group_id = params[:user][:group_attributes][:id]
 
     respond_to do |format|
       if @user.save
