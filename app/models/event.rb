@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :user
   belongs_to :felica
+  belongs_to :location
 
   after_create do
     self.touch(:checkin_at)
