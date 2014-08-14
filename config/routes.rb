@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+
   root 'felicas#index'
 
+  resources :events, only: %i(index edit update)
   resources :groups
   resources :locations
+  resources :posts
   resources :users
-  resources :events, only: %i(index edit update)
 
   resources :felicas, only: %i(index create show destroy) do
     resource :user, only: %i(new create edit update)
