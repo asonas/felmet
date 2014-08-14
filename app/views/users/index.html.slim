@@ -6,6 +6,7 @@ table.table.table-striped
       th FelicaのIDm
       th 名前
       th グループ名　
+      th メールアドレス
       th
       th
 
@@ -15,5 +16,6 @@ table.table.table-striped
         td = user.felica.idm
         td = user.name
         td = user.group.name
-        td = link_to '編集する', edit_user_path(user)
+        td = user.email
+        td = link_to '編集する', edit_felica_user_path(user)
         td = link_to '削除する', user, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
