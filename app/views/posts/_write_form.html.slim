@@ -1,0 +1,18 @@
+= form_tag deliver_posts_path do
+  .row
+    .col-md-6
+      .form.form-group
+        = label :to, "To"
+        = text_field :post, :mail_addresses, class: "form-control"
+    .col-md-6
+      .form.form-group
+        = label :groups, "一斉送信"
+        = select :post, :group_ids, @groups, {}, { class: "form-control", multiple: true }
+  .form.form-group
+    = label :title, "タイトル"
+    = text_field :post, :title, class: "form-control"
+  .form.form-group
+    = label :body, "本文"
+    = text_area :post, :body, class: "form-control", rows: 5
+
+  = submit_tag "送信", class: "btn btn-default"

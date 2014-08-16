@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   resources :events, only: %i(index edit update)
   resources :groups
   resources :locations
-  resources :posts
   resources :users
 
+  resources :posts do
+    collection do
+      get :write
+      post :deliver
+    end
+
+  end
   resources :felicas, only: %i(index create show destroy) do
     resource :user, only: %i(new create edit update)
   end

@@ -6,13 +6,13 @@
         - @post.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :template_name
-    = f.text_field :template_name
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body
-    = f.text_area :body
-  .actions = f.submit 'Save'
+  .field.form-group
+    = f.label "テンプレート名"
+    = f.text_field :template_name, class: "form-control"
+  .field.form-group
+    = f.label "タイトル"
+    = f.text_field :title, class: "form-control"
+  .field.form-group
+    = f.label "本文"
+    = f.text_area :body, class: "form-control", rows: 5
+  .actions = f.submit '保存', class: "btn btn-default"
