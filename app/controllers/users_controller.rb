@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.build_group
 
     @felica = Felica.find(params[:felica_id])
     if @felica.activate?
@@ -33,7 +32,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.group_id = params[:user][:group_attributes][:id]
 
     respond_to do |format|
       if @user.save
@@ -80,6 +78,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:felica_id, :name, :email)
+      params.require(:user).permit(:felica_id, :name, :email, :group_id)
     end
 end
