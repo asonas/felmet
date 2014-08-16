@@ -24,6 +24,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'guard-livereload', require: false
+  gem 'letter_opener_web', '~> 1.2.0'
   gem 'pry'
   gem 'rack-livereload'
   gem 'spring'
@@ -37,7 +38,6 @@ group :test do
   gem 'faker'
   gem 'guard-rspec'
   gem 'konacha'
-  gem 'letter_opener_web', '~> 1.2.0'
   gem "poltergeist"
   gem 'rspec-rails', group: :development
 end
