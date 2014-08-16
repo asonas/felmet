@@ -16,6 +16,13 @@ class PostsController < ApplicationController
   end
 
   def deliver
+    users = User.where(email: params[:post][:mail_addresses].split(","))
+    users = users + User.where(group_id: params[:post][:group_ids])
+
+    users.each do |user|
+      UserMailer.notification(user: user, title: params[:post][:title], body: params[:post][:body]).deliver
+    end
+    redirect_to posts_path
   end
 
   # GET /posts/new
