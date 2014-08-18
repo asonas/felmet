@@ -1,4 +1,4 @@
-class Api::EventsController < ApplicationController
+class Api::EventsController < ApiController
 
   def create
     felica = Felica.active.find_by(idm: params[:idm])
