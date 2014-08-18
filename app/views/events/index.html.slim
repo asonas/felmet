@@ -9,9 +9,20 @@ table.table.table-striped
       th チェックアウトした日時
 
   tbody
-    - @events.each do |event|
-      tr
-        td = event.user.name
-        td = event.location.name
-        td = event.checkin_at
-        td = event.checkout_at
+    - @users.each do |user|
+      - event = user.events.last
+      - if event
+        tr
+          td = user.name
+          td = event.location.name
+          td = event.checkin_at
+          td = event.checkout_at
+      - else
+        tr
+          td = user.name
+          td
+            | ---
+          td
+            | 未だチェックインしていません
+          td
+            | 未だチェックインしていません
