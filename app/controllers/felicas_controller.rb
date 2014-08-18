@@ -4,10 +4,14 @@ class FelicasController < ApplicationController
   # GET /felicas
   # GET /felicas.json
   def index
+    @mode = params[:mode].presence || "all"
     @active = params[:activation]
-    @felicas = if @active
+    @felicas = case @mode
+    when "all"
+      Felica.all.page(params[:page])
+    when "registered"
       Felica.active.page(params[:page])
-    else
+    when "unregistered"
       Felica.not_active.page(params[:page])
     end
   end

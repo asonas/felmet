@@ -1,13 +1,18 @@
 h1 Felicaカード一覧
 
 ul.nav.nav-pills
-  li(class=("active" unless @active == "true") )
+  li(class=("active" if @mode == "all") )
     = link_to felicas_path do
+      span.badge.pull-right
+        = Felica.count
+      |すべてのカード一覧
+  li(class=("active" if @mode == "unregistered") )
+    = link_to felicas_path(mode: "unregistered") do
       span.badge.pull-right
         = Felica.not_active.count
       |ユーザ未登録のカード一覧
-  li(class=("active" if @active == "true") )
-    = link_to felicas_path(activation: true) do
+  li(class=("active" if @mode == "registered") )
+    = link_to felicas_path(mode: "registered") do
       span.badge.pull-right
         = Felica.active.count
       | 登録済みのカード一覧
