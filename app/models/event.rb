@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
 
   after_create do
     self.touch(:checkin_at)
+    UserMailer.checkin(self).deliver
   end
 
   def checkout!
@@ -12,6 +13,7 @@ class Event < ActiveRecord::Base
 
     self.touch(:checkout_at)
     save
+    UserMailer.checkout(self).deliver
   end
 
   def open?
