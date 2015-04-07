@@ -4,19 +4,23 @@ ruby "2.2.1"
 
 gem 'rails', '4.2.1'
 
-gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
-gem 'jquery-rails'
 gem 'kaminari'
 gem 'rails_12factor'
 gem 'sass-rails', '~> 4.0.3'
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'underscore-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-jquery-ujs'
+  gem 'rails-assets-underscore'
 end
 
 group :development do
