@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'felicas#index'
+  root 'users#index'
 
   resources :events, only: %i(index edit update)
   resources :groups
