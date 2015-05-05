@@ -22,10 +22,8 @@ source 'https://rubygems.org' do
     gem 'awesome_print'
     gem 'better_errors'
     gem 'binding_of_caller'
-    gem 'guard-livereload', require: false
     gem 'letter_opener_web', '~> 1.2.0'
     gem 'pry'
-    gem 'rack-livereload'
     gem 'spring'
     gem 'spring-commands-rspec'
     gem 'sqlite3', group: :test
