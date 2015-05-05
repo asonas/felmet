@@ -6,6 +6,7 @@ source 'https://rubygems.org' do
   gem 'coffee-rails', '~> 4.0.0'
   gem 'jbuilder', '~> 2.0'
   gem 'kaminari'
+  gem 'pg'
   gem 'puma'
   gem 'rails_12factor'
   gem 'rails_serve_static_assets'
@@ -40,7 +41,6 @@ source 'https://rubygems.org' do
   end
 
   group :production do
-    gem 'pg'
     gem 'newrelic_rpm'
   end
 end
