@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.preload(:events).find(params[:id])
+    @events = @user.events.fetch_at(datetime_param)
+    @this_month = datetime_param
+    @prev_month = @this_month - 1.month
+    @next_month = @this_month + 1.month
   end
 
   # GET /users/new
@@ -79,5 +84,14 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:felica_id, :name, :email, :group_id)
+    end
+
+    def datetime_param
+      if params[:date]
+        year, month = params[:date].split("-")
+        DateTime.new year.to_i, month.to_i
+      else
+        DateTime.now
+      end
     end
 end

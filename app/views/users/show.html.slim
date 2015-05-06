@@ -1,5 +1,7 @@
 p#notice = notice
 
+h2 = @user.name
+
 p
   strong Felica:
   = @user.felica.idm
@@ -11,6 +13,45 @@ p
   = @user.group.name
 
 
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path
+ul.pager
+  li
+    = link_to  user_path(@user, date: @prev_month.to_s(:year_month)) do
+      i.fa.fa-angle-double-left
+      = @prev_month.to_s(:year_month)
+  li
+    = link_to  user_path(@user, date: @next_month.to_s(:year_month)) do
+      = @next_month.to_s(:year_month)
+      i.fa.fa-angle-double-right
+
+table.table.table-striped
+  thead
+    tr
+      th チェックインした場所
+      th チェックインした日時
+      th チェックアウトした日時
+      th 在籍時間
+
+  tbody
+    - if @events.present?
+
+      - @events.each do |event|
+        tr
+          td = event.location.name
+          td = event.checkin_at
+          td = event.checkout_at
+          td = event.enrollment_time
+    - else
+      tr
+        td ---
+      td まだチェックインしていません
+        td まだチェックインしていません
+        td ---
+ul.pager
+  li
+    = link_to  user_path(@user, date: @prev_month.to_s(:year_month)) do
+      i.fa.fa-angle-double-left
+      = @prev_month.to_s(:year_month)
+  li
+    = link_to  user_path(@user, date: @next_month.to_s(:year_month)) do
+      = @next_month.to_s(:year_month)
+      i.fa.fa-angle-double-right
