@@ -23,8 +23,10 @@ source 'https://rubygems.org' do
     gem 'awesome_print'
     gem 'better_errors'
     gem 'binding_of_caller'
+    gem 'bullet'
     gem 'letter_opener_web', '~> 1.2.0'
     gem 'pry'
+    gem 'quiet_assets'
     gem 'spring'
     gem 'spring-commands-rspec'
     gem 'sqlite3', group: :test
