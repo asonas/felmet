@@ -43,9 +43,17 @@ table.table.table-striped
     - else
       tr
         td ---
-      td まだチェックインしていません
+        td まだチェックインしていません
         td まだチェックインしていません
         td ---
+    tr
+      td
+      td
+      td
+        strong 合計時間
+      td
+        strong = Event.sum_enrollment_time @events
+
 ul.pager
   li
     = link_to  user_path(@user, date: @prev_month.to_s(:year_month)) do
