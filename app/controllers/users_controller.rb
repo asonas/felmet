@@ -15,6 +15,16 @@ class UsersController < ApplicationController
     @this_month = datetime_param
     @prev_month = @this_month - 1.month
     @next_month = @this_month + 1.month
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        filename = "#{@user.name}-#{@this_month.to_s(:year_month)}.csv"
+        response.headers['Content-Type'] = 'text/csv; charset=shift_jis'
+        response.headers['Content-Disposition'] = %(attachement; filename="#{filename}")
+        render
+      end
+    end
   end
 
   # GET /users/new
