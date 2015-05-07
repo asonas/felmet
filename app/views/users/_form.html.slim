@@ -11,8 +11,11 @@
     = f.label :name
     = f.text_field :name, class: "form-control"
   .field.form-group
-    = f.label :email
+    label メールアドレス
     = f.text_field :email, class: "form-control"
+  .field.form-group
+    label メールアドレス(連絡用)
+    = f.text_field :other_email, class: "form-control"
   .field.form-group
     = f.label :group
     = select :user, :group_id, Group.all.map { |g| [g.name, g.id] }, {}, { class: "form-control" }

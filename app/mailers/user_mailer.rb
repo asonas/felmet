@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
     @location = event.location
     @event    = event
 
-    mail to: @user.email, subject: "#{@location.name}へ入室しました。"
+    mail to: "#{@user.email}, #{@user.other_email}, #{Rails.application.secrets.master_email}", subject: "#{@location.name}へ入室しました。"
   end
 
   def checkout(event)
@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
     @location = event.location
     @event    = event
 
-    mail to: @user.email, subject: "#{@location.name}から退出しました。"
+    mail to: "#{@user.email}, #{@user.other_email}, #{Rails.application.secrets.master_email}", subject: "#{@location.name}から退出しました。"
   end
 
 end

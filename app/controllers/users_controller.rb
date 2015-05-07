@@ -93,7 +93,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:felica_id, :name, :email, :group_id)
+      params.require(:user).permit(:felica_id, :name, :email, :other_email, :group_id)
     end
 
     def datetime_param
