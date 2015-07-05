@@ -24,8 +24,8 @@ source 'https://rubygems.org' do
     gem 'better_errors'
     gem 'binding_of_caller'
     gem 'bullet'
-    gem 'letter_opener_web', '~> 1.2.0'
-    gem 'pry'
+    gem 'letter_opener_web', '~> 1.2.0', group: :test
+    gem 'pry', group: :test
     gem 'quiet_assets'
     gem 'spring'
     gem 'spring-commands-rspec'
@@ -40,6 +40,7 @@ source 'https://rubygems.org' do
     gem 'konacha'
     gem "poltergeist"
     gem 'rspec-rails', group: :development
+    gem 'timecop'
   end
 
   group :production do
