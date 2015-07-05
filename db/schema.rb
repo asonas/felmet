@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150506152026) do
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "felicas", force: :cascade do |t|
-    t.string   "idm",          limit: 255,                 null: false
-    t.boolean  "activation",               default: false, null: false
+    t.string   "idm",                          null: false
+    t.boolean  "activation",   default: false, null: false
     t.datetime "activated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,20 +42,20 @@ ActiveRecord::Schema.define(version: 20150506152026) do
   add_index "felicas", ["idm"], name: "index_felicas_on_idm", unique: true, using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "template_name", limit: 255
-    t.string   "title",         limit: 255
+    t.string   "template_name"
+    t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20150506152026) do
   create_table "users", force: :cascade do |t|
     t.integer  "felica_id"
     t.integer  "group_id"
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",       limit: 255
+    t.string   "email"
     t.string   "other_email"
   end
 
