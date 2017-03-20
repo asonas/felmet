@@ -75,6 +75,8 @@ GEM
     fabrication (2.16.1)
     faker (1.7.3)
       i18n (~> 0.5)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     formatador (0.2.5)
     globalid (0.3.7)
@@ -142,6 +144,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     nenv (0.3.0)
     newrelic_rpm (4.0.0.332)
     nokogiri (1.7.1)
@@ -237,6 +240,8 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sentry-raven (2.3.0)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     slim (3.0.7)
       temple (~> 0.7.6)
@@ -311,6 +316,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  sentry-raven
   slim-rails
   spring
   spring-commands-rspec

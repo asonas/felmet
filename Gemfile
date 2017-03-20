@@ -12,6 +12,7 @@ gem 'rails_12factor'
 gem 'rails_serve_static_assets'
 gem 'rails_stdout_logging'
 gem 'sass-rails', '~> 4.0.3'
+gem "sentry-raven"
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 
