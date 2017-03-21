@@ -30,15 +30,7 @@ class Event < ActiveRecord::Base
   def calculate_enrollment_seccond
     return nil if new_record?
     return nil if open?
-    @day, @seccond = (self.checkout_at - self.checkin_at).divmod(86400)
-  end
-
-  def calculate_enrollment_time
-    return nil if new_record?
-    return nil if open?
-    days = (checkout_at - checkin_at).divmod(24*60*60)
-    @hours = days[1].divmod(60*60)
-    @minutes = hours[1].divmod(60)
+    @day, @seccond = (self.checkout_at - self.checkin_at).ceil.divmod(86400)
   end
 
   def enrollment_time

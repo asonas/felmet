@@ -5,7 +5,7 @@ RSpec.describe Event, :type => :model do
     let(:user) { Fabricate(:user) }
     let(:event) { Fabricate(:event, felica: user.felica, user: user, checkin_at: checkin_at, checkout_at: checkout_at) }
     before do
-      event.calculate_enrollment_time
+      event.calculate_enrollment_seccond
     end
 
     context "1分間在籍しているとき" do
