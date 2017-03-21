@@ -1,6 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Event, :type => :model do
+  describe "#calculate_enrollment_time" do
+    let(:user) { Fabricate(:user) }
+    let(:event) { Fabricate(:event, felica: user.felica, user: user, checkin_at: checkin_at, checkout_at: checkout_at) }
+    before do
+      event.calculate_enrollment_time
+    end
+
+    context "1分間在籍しているとき" do
+      let(:checkin_at) { DateTime.now }
+      let(:checkout_at) { checkin_at + 1.minutes }
+
+      it { expect(event.enrollment_time).to eql "00時間01分" }
+    end
+
+    context "1時間在籍しているとき" do
+      let(:checkin_at) { DateTime.now }
+      let(:checkout_at) { checkin_at + 1.hour }
+
+      it { expect(event.enrollment_time).to eql "01時間00分" }
+    end
+
+    context "1時間30分在籍しているとき" do
+      let(:checkin_at) { DateTime.now }
+      let(:checkout_at) { checkin_at + 1.hour + 30.minutes}
+
+      it { expect(event.enrollment_time).to eql "01時間30分" }
+    end
+
+    context "24時間以上在籍しているとき" do
+      let(:checkin_at) { DateTime.now }
+      let(:checkout_at) { checkin_at + 24.hours + 30.minutes }
+
+      it { expect(event.enrollment_time).to eql "チェックアウトをしていません。" }
+    end
+  end
 
   describe "#fetch_at" do
     let(:now) { DateTime.now }
