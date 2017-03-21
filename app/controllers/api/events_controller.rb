@@ -17,7 +17,7 @@ class Api::EventsController < ApiController
 
     event = felica.fetch_active_event
     if event.nil?
-      Event.create(user: felica.user, felica: felica, location_id: params[:location_id])
+      Event.create!(user: felica.user, felica: felica, location_id: params[:location_id])
     else
       event.checkout!
     end

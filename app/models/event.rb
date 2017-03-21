@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
 
   after_create do
     self.touch(:checkin_at)
-    UserMailer.checkin(self).deliver
+    UserMailer.checkin(self).deliver_now
   end
 
   after_initialize :calculate_enrollment_time
@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
 
     self.touch(:checkout_at)
     save
-    UserMailer.checkout(self).deliver
+    UserMailer.checkout(self).deliver_now
   end
 
   def open?

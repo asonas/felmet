@@ -27,7 +27,7 @@ RSpec.describe Api::EventsController, :type => :controller do
       let!(:location) { Fabricate(:location) }
 
       it "should create event" do
-        expect{ get :create, id: nil, idm: felica.idm, location_id: 1 }.to change(Event, :count).by(1)
+        expect{ get :create, id: nil, idm: felica.idm, location_id: location.id }.to change(Event, :count).by(1)
       end
     end
   end

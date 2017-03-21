@@ -4,7 +4,7 @@ Fabricator(:user) do
   role   "general"
 end
 
-Fabricator(:user_with_activated_felica, from: :user) do
+Fabricator :user_with_activated_felica, from: :user do
   felica { Fabricate(:activated_felica) }
   role   "general"
 end

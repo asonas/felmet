@@ -11,11 +11,9 @@ RSpec.describe Felica, :type => :model do
 
     context "with false or invalid characters" do
       let(:felica1) { Fabricate(:felica, { idm: Faker::Lorem.characters, activation: false }) }
-      let(:felica2) { Fabricate(:felica, { idm: Faker::Lorem.characters, activation: "foobar" }) }
 
       it "should return false" do
         expect(felica1.activation).to eql false
-        expect(felica2.activation).to eql false
       end
     end
   end
