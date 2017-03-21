@@ -1,5 +1,5 @@
 Fabricator(:felica) do
-  idm          "test"
+  idm          SecureRandom.uuid
   activation   false
   activated_at nil
 end

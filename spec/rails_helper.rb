@@ -22,6 +22,8 @@ RSpec.configure do |config|
     # DatabaseRewinder.clean_with :any_arg_that_would_be_actually_ignored_anyway
   end
 
+  config.include ActiveSupport::Testing::TimeHelpers
+
   config.after :each do
     DatabaseRewinder.clean
   end
