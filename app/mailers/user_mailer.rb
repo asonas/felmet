@@ -12,11 +12,12 @@ class UserMailer < ActionMailer::Base
     @user     = event.user
     @location = event.location
     @event    = event
+    subject   = "【box for Designers 入退室管理システムからのお知らせ】#{@location.name}へ入室しました。"
 
     if @user.internal?
-      mail to: "#{@user.email}", subject: "#{@location.name}へ入室しました。"
+      mail to: "#{@user.email}", subject: subject
     else
-      mail to: "#{@user.email}, #{@user.other_email}, #{Rails.application.secrets.master_email}", subject: "#{@location.name}へ入室しました。"
+      mail to: "#{@user.email}, #{@user.other_email}, #{Rails.application.secrets.master_email}", subject: subject
     end
   end
 
@@ -24,11 +25,12 @@ class UserMailer < ActionMailer::Base
     @user     = event.user
     @location = event.location
     @event    = event
+    subject   = "【box for Designers 入退室管理システムからのお知らせ】#{@location.name}へ退室しました。"
 
     if @user.internal?
-      mail to: "#{@user.email}", subject: "#{@location.name}へ退室しました。"
+      mail to: "#{@user.email}", subject: subject
     else
-      mail to: "#{@user.email}, #{@user.other_email}, #{Rails.application.secrets.master_email}", subject: "#{@location.name}から退出しました。"
+      mail to: "#{@user.email}, #{@user.other_email}, #{Rails.application.secrets.master_email}", subject: subject
     end
   end
 
