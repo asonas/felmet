@@ -5,15 +5,12 @@ table.table.table-striped
     tr
       th Name
       th
-      th
 
   tbody
     - @locations.each do |location|
       tr
         td = location.name
         td = link_to '編集する', edit_location_path(location)
-        td = link_to '削除する', location, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
-
 br
 
 = link_to '新規設置場所登録', new_location_path

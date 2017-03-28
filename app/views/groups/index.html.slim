@@ -5,14 +5,12 @@ table.table.table-striped
     tr
       th 名前
       th
-      th
 
   tbody
     - @groups.each do |group|
       tr
         td = group.name
         td = link_to '編集する', edit_group_path(group)
-        td = link_to '削除する', group, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
 
 br
 

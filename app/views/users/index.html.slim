@@ -8,7 +8,6 @@ table.table.table-striped
       th グループ名　
       th メールアドレス
       th
-      th
 
   tbody
     - @users.each do |user|
@@ -18,4 +17,3 @@ table.table.table-striped
         td = user.group.name
         td = user.email
         td = link_to '編集する', edit_felica_user_path(user)
-        td = link_to '削除する', user, data: {confirm: '本当に削除してもよろしいですか？'}, method: :delete
