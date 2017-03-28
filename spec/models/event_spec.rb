@@ -1,6 +1,94 @@
 require 'rails_helper'
 
 RSpec.describe Event, :type => :model do
+  describe ".sum_enrollment_time" do
+    subject { Event.sum_enrollment_time Event.all }
+    let!(:user) { Fabricate(:user) }
+    context "総在籍時間が59秒以下" do
+      context "レコードが1件のとき" do
+        before do
+          datetime = DateTime.new(2017, 3, 1)
+          Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 59.seconds, user_id: user.id, felica_id: user.felica.id)
+        end
+
+        it { expect(subject).to eql "0時間0分" }
+      end
+
+      context "レコードが複数件のとき" do
+        before do
+          datetime = DateTime.new(2017, 3, 1)
+          Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 29.seconds, user_id: user.id, felica_id: user.felica.id)
+          datetime = DateTime.new(2017, 3, 2)
+          Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 30.seconds, user_id: user.id, felica_id: user.felica.id)
+        end
+
+        it { expect(subject).to eql "0時間0分" }
+      end
+    end
+
+    context "総在籍時間が60秒以上" do
+      context "レコードが1件のとき" do
+        before do
+          datetime = DateTime.new(2017, 3, 1)
+          Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 60.seconds, user_id: user.id, felica_id: user.felica.id)
+        end
+
+        it { expect(subject).to eql "0時間1分" }
+      end
+
+      context "レコードが複数件のとき" do
+        before do
+          datetime = DateTime.new(2017, 3, 1)
+          Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 30.seconds, user_id: user.id, felica_id: user.felica.id)
+          datetime = DateTime.new(2017, 3, 2)
+          Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 30.seconds, user_id: user.id, felica_id: user.felica.id)
+        end
+
+        it { expect(subject).to eql "0時間1分" }
+      end
+    end
+    context "総在籍時間が59分未満" do
+      before do
+        datetime = DateTime.new(2017, 3, 1)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 49.minutes, user_id: user.id, felica_id: user.felica.id)
+        datetime = DateTime.new(2017, 3, 2)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 10.minutes, user_id: user.id, felica_id: user.felica.id)
+      end
+
+      it { expect(subject).to eql "0時間59分" }
+    end
+    context "総在籍時間が1時間以上" do
+      before do
+        datetime = DateTime.new(2017, 3, 1)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 50.minutes, user_id: user.id, felica_id: user.felica.id)
+        datetime = DateTime.new(2017, 3, 2)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 10.minutes, user_id: user.id, felica_id: user.felica.id)
+      end
+
+      it { expect(subject).to eql "1時間0分" }
+    end
+    context "総在籍時間が23時間59分以下" do
+      before do
+        datetime = DateTime.new(2017, 3, 1)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 23.hours, user_id: user.id, felica_id: user.felica.id)
+        datetime = DateTime.new(2017, 3, 2)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 59.minutes, user_id: user.id, felica_id: user.felica.id)
+      end
+
+      it { expect(subject).to eql "23時間59分" }
+    end
+    context "総在籍時間が24時間以上" do
+      before do
+        datetime = DateTime.new(2017, 3, 1)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 23.hours, user_id: user.id, felica_id: user.felica.id)
+        datetime = DateTime.new(2017, 3, 2)
+        Fabricate(:event, checkin_at: datetime, checkout_at: datetime + 60.minutes, user_id: user.id, felica_id: user.felica.id)
+      end
+
+      it { expect(subject).to eql "24時間0分" }
+    end
+  end
+
   describe "#calculate_enrollment_time" do
     let(:user) { Fabricate(:user) }
     let(:event) { Fabricate(:event, felica: user.felica, user: user, checkin_at: checkin_at, checkout_at: checkout_at) }

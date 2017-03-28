@@ -4,39 +4,50 @@ class Event < ActiveRecord::Base
   belongs_to :location
 
   after_create do
-    self.touch(:checkin_at)
     UserMailer.checkin(self).deliver_now
   end
 
   after_initialize :calculate_enrollment_seccond
+  scope :active, -> { where.not(checkout_at: nil) }
 
-  attr_accessor :hours, :minutes, :seccond
+  attr_accessor :hours, :minutes, :second, :seconds
 
   scope :fetch_at, ->(date) { where(checkin_at: date.at_beginning_of_month..date.at_end_of_month) }
 
   # TODO EventService? EventEntity?
   def self.sum_enrollment_time(events)
-    hours = []
+    hours   = []
     minutes = []
-    events.each do |event|
-      next if event.open?
-      hours.push event.hours[0]
-      minutes.push event.minutes[0]
+    seconds = []
+    # 時分秒の合計を出す
+    events.active.each do |event|
+      hour, second = (event.checkout_at - event.checkin_at).ceil.divmod(3600)
+      minute, second = second.divmod(60)
+
+      hours.push hour
+      minutes.push minute
+      seconds.push second
     end
 
-    "#{hours.sum}時間 #{minutes.sum}分"
+    # 合計を出したあとさらにそれを分解する
+    minute, second = seconds.sum.divmod(60)
+    minutes.push minute
+    hour, minute = minutes.sum.divmod(60)
+    hours.push hour
+
+    "#{hours.sum}時間#{minute}分"
   end
 
   def calculate_enrollment_seccond
     return nil if new_record?
     return nil if open?
-    @day, @seccond = (self.checkout_at - self.checkin_at).ceil.divmod(86400)
+    @day, @second = (self.checkout_at - self.checkin_at).ceil.divmod(86400)
   end
 
   def enrollment_time
     return "在籍中です" if open?
     return "チェックアウトをしていません。" if self.uncheckouted?
-    (Time.parse("1/1") + @seccond).strftime("%H時間%M分")
+    (Time.parse("1/1") + @second).strftime("%H時間%M分")
   end
 
   def uncheckouted?

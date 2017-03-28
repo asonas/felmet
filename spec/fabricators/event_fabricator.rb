@@ -1,6 +1,5 @@
-Fabricator(:event) do
-  felica { Fabricate(:activated_felica) }
+Fabricator(:event) do |f|
   location
-  checkin_at  "2014-07-31 18:54:57"
-  checkout_at "2014-07-31 18:54:57"
+  f.checkin_at  "2014-07-31 18:54:57"
+  f.checkout_at "2014-07-31 18:54:57"
 end
